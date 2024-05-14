@@ -1,5 +1,23 @@
 <html>
+    <script>
+        function Get(url,onfinish) {
+            const r = new XMLHttpRequest()
+            r.open("GET",url)
+            r.onreadystatechange = (et) => {
+                if(r.status === 200 && r.readyState === 4) {
+                    onfinish(r.responseText)
+                }
+            }
+            r.send()
+        }
+    </script>
     <body>
         <h3>Hell</h3>
+        <p id="doc"></p>
+        <script>
+            Get("index.md",t => {
+                document.getElementById("doc").innerHTML = t
+            })
+        </script>
     </body>
 </html>
